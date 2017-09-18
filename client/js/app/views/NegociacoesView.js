@@ -1,45 +1,39 @@
-class NegociacoesView extends View {
-    
-    constructor(elemento){
-        super(elemento);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NegociacoesView = function (_View) {
+    _inherits(NegociacoesView, _View);
+
+    function NegociacoesView(elemento) {
+        _classCallCheck(this, NegociacoesView);
+
+        return _possibleConstructorReturn(this, (NegociacoesView.__proto__ || Object.getPrototypeOf(NegociacoesView)).call(this, elemento));
     }
 
-    _template (model) {
-        return `
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th onclick="negociacaoController.ordena('data')">DATA</th>
-                    <th onclick="negociacaoController.ordena('quantidade')">QUANTIDADE</th>
-                    <th onclick="negociacaoController.ordena('valor')">VALOR</th>
-                    <th onclick="negociacaoController.ordena('volume')">VOLUME</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                ${model.negociacoes.map(n => `
+    _createClass(NegociacoesView, [{
+        key: '_template',
+        value: function _template(model) {
+            return '\n        <table class="table table-hover table-bordered">\n            <thead>\n                <tr>\n                    <th onclick="negociacaoController.ordena(\'data\')">DATA</th>\n                    <th onclick="negociacaoController.ordena(\'quantidade\')">QUANTIDADE</th>\n                    <th onclick="negociacaoController.ordena(\'valor\')">VALOR</th>\n                    <th onclick="negociacaoController.ordena(\'volume\')">VOLUME</th>\n                </tr>\n            </thead>\n            \n            <tbody>\n                ' + model.negociacoes.map(function (n) {
+                return '\n\n                        <tr>\n                            <td>' + DateHelper.dataParaTexto(n.data) + '</td>\n                            <td>' + n.quantidade + '</td>\n                            <td>' + n.valor + '</td>\n                            <td>' + n.volume + '</td>\n                        </tr>\n                    \n                ';
+            }).join('') + '\n            </tbody>\n            \n            <tfoot>\n                <td colspan=\'3\'></td>\n                <td>' + model.negociacoes.reduce(function (total, n) {
+                return total + n.volume;
+            }, 0.0)
+            /*(function(){
+                let total = 0;
+                model.negociacoes.forEach(n => total += n.volume);
+                return total;
+            })()*/
+            + '</td>\n            </tfoot>\n        </table>\n        ';
+        }
+    }]);
 
-                        <tr>
-                            <td>${DateHelper.dataParaTexto(n.data)}</td>
-                            <td>${n.quantidade}</td>
-                            <td>${n.valor}</td>
-                            <td>${n.volume}</td>
-                        </tr>
-                    
-                `).join('')}
-            </tbody>
-            
-            <tfoot>
-                <td colspan='3'></td>
-                <td>${model.negociacoes.reduce((total, n) => total+n.volume, 0.0)
-                    /*(function(){
-                        let total = 0;
-                        model.negociacoes.forEach(n => total += n.volume);
-                        return total;
-                    })()*/
-                }</td>
-            </tfoot>
-        </table>
-        `;
-    }
-}
+    return NegociacoesView;
+}(View);
+//# sourceMappingURL=NegociacoesView.js.map
