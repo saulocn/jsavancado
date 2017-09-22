@@ -1,4 +1,4 @@
-class DateHelper {
+export class DateHelper {
 
     constructor(){
         throw new Error("A classe DateHelper não pode ser inicializada!");
@@ -15,11 +15,7 @@ class DateHelper {
             return new Date(...texto.split('-').map((item, indice)=> item - indice % 2));
         } else {
             throw new Error('Deve estar no formato aaaa-mm-dd ou dd/mm/aaaa');
-        }
-        //if(!/\d{4}-\d{2}-\d{2}/.test(texto)) throw new Error('Deve estar no formato aaaa-mm-dd');
-        //return new Date(...texto.split('-').map((item, indice)=> item - indice % 2));
-        //if(!/\d{2}\/\d{2}\/\d{4}/.test(texto)) throw new Error('Deve estar no formato dd/mm/aaaa');
-        
+        }        
     }
 
 }

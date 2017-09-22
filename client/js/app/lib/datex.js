@@ -1,22 +1,53 @@
 "use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+System.register([], function (_export, _context) {
+    "use strict";
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    var _createClass, DateHelper;
 
-var DateHelper = function () {
-    function DateHelper() {
-        _classCallCheck(this, DateHelper);
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
     }
 
-    _createClass(DateHelper, null, [{
-        key: "dataParaTexto",
-        value: function dataParaTexto(data) {}
-    }, {
-        key: "textoParaData",
-        value: function textoParaData(texto) {}
-    }]);
+    return {
+        setters: [],
+        execute: function () {
+            _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
 
-    return DateHelper;
-}();
+                return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
+
+            DateHelper = function () {
+                function DateHelper() {
+                    _classCallCheck(this, DateHelper);
+                }
+
+                _createClass(DateHelper, null, [{
+                    key: "dataParaTexto",
+                    value: function dataParaTexto(data) {}
+                }, {
+                    key: "textoParaData",
+                    value: function textoParaData(texto) {}
+                }]);
+
+                return DateHelper;
+            }();
+        }
+    };
+});
 //# sourceMappingURL=datex.js.map

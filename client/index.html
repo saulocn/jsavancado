@@ -5,15 +5,12 @@
     <title>Negociações</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
-    
-    <script src="js/app/polyfill/fetch.js"></script>
-    <script src="js/app/polyfill/es6.js"></script>
 </head>
 <body class="container">
     
     <h1 class="text-center">Negociações</h1>
     <div id="mensagemView"></div>
-    <form class="form" onsubmit="negociacaoController.adiciona(event)">
+    <form class="form">
         
         <div class="form-group">
             <label for="data">Data</label>
@@ -34,119 +31,19 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.importaNegociacoes()">
-            Importar Negociações
-        </button>
-        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.apaga()">
+        <button class="btn btn-primary text-center" type="button">
             Apagar
         </button>
     </div> 
     <br>
     <br>
     <div id="negociacoesView"></div>
-    <script src="js/app/models/Negociacao.js"></script>
-    <script src="js/app/models/Mensagem.js"></script>
-    <script src="js/app/models/ListaNegociacoes.js"></script>
-    <script src="js/app/controllers/NegociacaoController.js"></script>
-    <script src="js/app/services/ProxyFactory.js"></script>
-    <script src="js/app/services/NegociacaoService.js"></script>
-    <script src="js/app/services/HttpService.js"></script>
-    <script src="js/app/services/ConnectionFactory.js"></script>
-    <script src="js/app/dao/NegociacaoDao.js"></script>
-    <script src="js/app/helpers/DateHelper.js"></script>
-    <script src="js/app/helpers/Bind.js"></script>
-    <script src="js/app/views/View.js"></script>
-    <script src="js/app/views/NegociacoesView.js"></script>
-    <script src="js/app/views/MensagemView.js"></script>
-    <script src="js/app/lib/datex.js"></script>
-    <script>        
-        var negociacaoController = new NegociacaoController();
-    </script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
     <script>
-
-      /*  
-
-        
-        let hoje = new Date();
-        let n1 = new Negociacao(hoje, 5, 700.23);
-
-
-        var amanha = new Date();
-        amanha.setDate(11)
-        console.log(n1);
-        hoje.setDate(12);
-        n1.data.setDate(11);
-        console.log(n1);
-
-
-        for (var i = 1; i <= 100; i++) {
-            var nome = "Saulo";
-            console.log(i);
-        }
-        alert(i);
-        alert(nome);
-
-        for (let i = 1; i <= 100; i++) {
-            let nome = "Saulo";
-            console.log(i);
-        }
-        alert(i);
-        alert(nome);
-      
-        let negociacao = new Proxy(new Negociacao(new Date(), 1, 100), {
-
-            get: function(target, prop, receiver) {
-
-                console.log(`a propriedade "${prop}" foi interceptada`);
-                return 'Flávio';
-            }
+        System.defaultJSExtensions = true;
+        System.import('js/app/boot').catch(function(err){
+            console.error(err);
         });
-
-
-        console.log(negociacao.quantidade);
-        console.log(negociacao.valor);
-        let negociacao2 = new Proxy(new Negociacao(new Date(), 2, 100), {
-            set: function(target, prop, value, receiver) {
-
-                console.log(`valor anterior: ${target[prop]} novo valor: ${value}`);
-                return Reflect.set(target, prop, value, receiver);
-            }
-        });
-
-
-        negociacao2._quantidade = 10;
-        negociacao2._valor = 200;
-
-
-        let lista = new Proxy(new ListaNegociacoes(), {
-            set: function(target, prop, value, receiver) {
-
-                console.log(`valor anterior: ${target[prop]} novo valor: ${value}`);
-                return Reflect.set(target, prop, value, receiver);
-            }
-        });
-
-        lista.adiciona(new Negociacao(new Date(), 1, 100));
-        lista.esvazia();
-        
-        
-
-        let lista = new Proxy(new ListaNegociacoes(), {
-            get: function(target, prop, receiver) {
-                if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]==typeof[Function])){
-                    return function(){
-                        console.log(`interceptando ${prop}`);
-                        Reflect.apply(target[prop], target, arguments);
-                    }
-                }
-                return Reflect.get(target, prop, receiver);
-            }
-        });
-
-        lista.adiciona(new Negociacao(new Date(), 1, 100));
-        lista.esvazia();
-        
-        */
     </script>
 </body>
 </html>

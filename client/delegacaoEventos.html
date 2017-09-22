@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Teste delegação</title>
+</head>
+<body>
+
+    <input class="entrada" placeholder="Informe o nome do produto" autofocus>
+    <button class="botao">Incluir</button>
+
+    <ul class="lista">
+        <li class="item">Açúcar</li>
+        <li class="item">Papel higiênico</li>
+    </ul>
+
+    <script>
+
+    // usou o module pattern, pois ela não esta usando ES2015 modules!
+
+    (function() {
+
+        let lista = document.querySelector('.lista');
+        
+            lista.addEventListener('click', function(event) {
+                if(event.target.nodeName == 'LI')
+                    alert(event.target.textContent);
+            });
+        
+            let entrada = document.querySelector('.entrada');
+
+        /* 
+            O resultado de lista.querySelectorAll retorna um `NodeList` que por padrão 
+            não suporta forEach. Nesse caso, pegamos emprestado o `Array.prototype.forEach`
+            indicando que seu this será os itens da lista. O último parâmetro, um array, 
+            possui todos os parâmetros que a função forEach recebe, no caso, passamos 
+            uma arrow function, aquela que itera nos itens da lista.
+        */ 
+
+        Reflect.apply(Array.prototype.forEach, lista.querySelectorAll('.item'), [item => {
+
+            item.addEventListener('click', function() {
+                alert(this.textContent);
+            });
+
+        }]);
+
+        /*
+            Pega o elemento do DOM que contém a entrada do usuário
+        */
+
+        let entrada = document.querySelector('.entrada');
+
+        /*
+            Adiciona o evento click no botão que ao ser pressionado adiciona novas li na lista.
+        */
+
+        document.querySelector('.botao').addEventListener('click', function() {
+
+            let nome = entrada.value.trim();
+
+            if(nome) {
+
+                let novaLi = document.createElement('li');
+                novaLi.textContent = nome;
+                novaLi.classList.add('item');
+                lista.appendChild(novaLi);
+                entrada.value = '';
+                entrada.focus();
+            }
+
+        });
+
+    })();
+
+    </script>
+
+</body>
+</html>
